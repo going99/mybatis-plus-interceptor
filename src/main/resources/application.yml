@@ -1,0 +1,46 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: user-center
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource: # 数据库连接池配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.2.100.136:3306/business_test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
+    username: root
+    password: zc123456
+    type: com.alibaba.druid.pool.DruidDataSource  # 指定druid数据连接池
+    druid:
+      filter:
+        config:
+          enabled: true
+        encoding:
+          enabled: true
+        stat:
+          db-type: mysql
+          log-slow-sql: true  # 开启慢查询日志
+          slow-sql-millis: 5000
+        wall:
+          enabled: false
+          db-type: mysql
+          config:
+            #delete-allow: false  # 不允许删除数据
+            drop-table-allow: false # 不允许删除表
+      initial-size: 5
+      max-active: 10
+      aop-patterns: com.going
+      stat-view-servlet:
+        login-username: zcb-admin
+        login-password: zcb7788
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

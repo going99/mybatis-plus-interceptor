@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.going.mybatis_plus_interceptor.mapper.OrderTblMapper">
+
+    <select id="getOrderList" resultType="com.going.mybatis_plus_interceptor.dto.OrderInfoDTO">
+        select u.name,u.age,o.id,o.user_id,o.commodity_code,o.count,o.dept_id,o.money,o.tenant_id
+        from order_tbl o left join user u on o.user_id=u.id
+    </select>
+
+</mapper>
